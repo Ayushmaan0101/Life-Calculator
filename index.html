@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Ultimate Life Calculator!</h1>
+        <p>What's your name?</p>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="askAge()">Next</button>
+        <div id="ageSection" style="display: none;">
+            <p>Hello, <span id="userName"></span>! How old are you?</p>
+            <input type="number" id="ageInput" placeholder="Enter your age">
+            <button onclick="calculateLife()">Calculate</button>
+        </div>
+        <div id="results" style="display: none;">
+            <h2>Results:</h2>
+            <p>Fantastic, <span id="resultName"></span>! You've already lived for:</p>
+            <ul>
+                <li><span id="yearsConsumed"></span> years</li>
+                <li><span id="weeksConsumed"></span> weeks</li>
+                <li><span id="daysConsumed"></span> days</li>
+            </ul>
+            <p>But don't worry, you still have plenty of time left:</p>
+            <ul>
+                <li><span id="yearsLeft"></span> years</li>
+                <li><span id="weeksLeft"></span> weeks</li>
+                <li><span id="daysLeft"></span> days</li>
+            </ul>
+            <p>Make the most of your time, and enjoy the journey of life! 🌟😊</p>
+        </div>
+    </div>
+    <script>
+        function askAge() {
+            const nameInput = document.getElementById("nameInput").value;
+            const userName = document.getElementById("userName");
+            const ageSection = document.getElementById("ageSection");
+
+            if (!nameInput) {
+                alert("Please enter your name.");
+                return;
+            }
+
+            userName.textContent = nameInput;
+            ageSection.style.display = "block";
+        }
+
+        function calculateLife() {
+            const ageInput = parseInt(document.getElementById("ageInput").value);
+
+            const resultName = document.getElementById("resultName");
+            const yearsConsumed = document.getElementById("yearsConsumed");
+            const weeksConsumed = document.getElementById("weeksConsumed");
+            const daysConsumed = document.getElementById("daysConsumed");
+            const yearsLeft = document.getElementById("yearsLeft");
+            const weeksLeft = document.getElementById("weeksLeft");
+            const daysLeft = document.getElementById("daysLeft");
+            const resultsDiv = document.getElementById("results");
+
+            if (isNaN(ageInput)) {
+                alert("Please enter a valid age.");
+                return;
+            }
+
+            resultName.textContent = userName.textContent;
+            yearsConsumed.textContent = ageInput;
+            weeksConsumed.textContent = ageInput * 52;
+            daysConsumed.textContent = ageInput * 365;
+
+            const remainingYears = 90 - ageInput;
+            yearsLeft.textContent = remainingYears;
+            weeksLeft.textContent = remainingYears * 52;
+            daysLeft.textContent = remainingYears * 365;
+
+            resultsDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>
